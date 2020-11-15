@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastucture.Identity.Migrations
 {
-    public partial class IdentityInitial : Migration
+    public partial class SqlLiteIdentityInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

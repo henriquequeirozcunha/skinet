@@ -51,8 +51,8 @@ namespace Infrastucture.Data.Migrations
                     b.Property<int?>("DeliveryMethodId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTimeOffset>("OrderDate")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("OrderDate")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("PaymentIntentId")
                         .HasColumnType("TEXT");
@@ -97,13 +97,11 @@ namespace Infrastucture.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasMaxLength(255);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(180);
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
