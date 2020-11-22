@@ -5,3 +5,4 @@ appsettings.json
 .DS_Store
 publish
 wwwroot
+ *.rdb
