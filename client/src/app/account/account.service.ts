@@ -1,7 +1,8 @@
+import { of } from 'rxjs/internal/observable/of';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { IUser } from './../shared/models/User';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -11,18 +12,19 @@ import { Injectable } from '@angular/core';
 })
 export class AccountService {
   baseUrl = environment.apiUrl;
-  private currentUserSource = new BehaviorSubject<IUser>(null);
+  private currentUserSource = new ReplaySubject<IUser>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router ) { }
 
-  // tslint:disable-next-line: typedef
-  getCurrentUserValue() {
-    return this.currentUserSource.value;
-  }
 
   // tslint:disable-next-line: typedef
-  loadCurrentUser(token: string) {
+  loadCurrentUser(token: string): Observable<null> | Observable<IUser> | Observable<void>  {
+    if (token === null){
+      this.currentUserSource.next(null);
+      return of(null);
+    }
+
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', `Bearer ${token}`);
 
