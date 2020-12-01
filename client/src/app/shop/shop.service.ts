@@ -16,7 +16,8 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(shopParams: ShopParams): Observable<IPagination>{
+  // tslint:disable-next-line: typedef
+  getProducts(shopParams: ShopParams){
 
     let params = new HttpParams();
 
@@ -41,7 +42,7 @@ export class ShopService {
     );
   }
 
-  getProduct(id : number): Observable<IProduct>{
+  getProduct(id: number): Observable<IProduct>{
     return this.http.get<IProduct>(this.baseUrl + 'products/' + id);
   }
 
