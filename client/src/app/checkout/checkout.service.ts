@@ -1,3 +1,4 @@
+import { IOrderToCreate } from './../shared/models/Order';
 import { IDeliveryMethod } from './../shared/models/DeliveryMethods';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -20,5 +21,10 @@ export class CheckoutService {
         return dm.sort((a, b) =>  b.price - a.price);
       })
     );
+  }
+
+  // tslint:disable-next-line: typedef
+  createOrder(order: IOrderToCreate) {
+    return this.http.post(this.baseUrl + 'orders', order);
   }
 }

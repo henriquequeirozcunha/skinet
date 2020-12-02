@@ -1,3 +1,4 @@
+import { IAddress } from './../shared/models/Address';
 import { of } from 'rxjs/internal/observable/of';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -71,5 +72,14 @@ export class AccountService {
   // tslint:disable-next-line: typedef
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + 'account/emailexists?email=' + email );
+  }
+
+  // tslint:disable-next-line: typedef
+  getUserAddress() {
+    return this.http.get(this.baseUrl + 'account/address');
+  }
+  // tslint:disable-next-line: typedef
+  updateUserAddress(address: IAddress) {
+    return this.http.put(this.baseUrl + 'account/address', address);
   }
 }
