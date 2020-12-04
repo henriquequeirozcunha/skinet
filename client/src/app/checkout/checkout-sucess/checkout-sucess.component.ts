@@ -1,5 +1,5 @@
 import { IOrder } from './../../shared/models/Order';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -20,6 +20,11 @@ export class CheckoutSucessComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  goToViewOrder(): void {
+    const navigationExtras: NavigationExtras = { state: this.order };
+    this.router.navigate(['orders'], navigationExtras);
   }
 
 }

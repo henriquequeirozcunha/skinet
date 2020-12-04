@@ -1,4 +1,4 @@
-import { IBasketItem } from './../shared/models/Basket';
+import { IBasketItem, IBasketTotals } from './../shared/models/Basket';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Basket } from '../shared/models/Basket';
@@ -11,11 +11,13 @@ import { BasketService } from './basket.service';
 })
 export class BasketComponent implements OnInit {
   basket$: Observable<Basket>;
+  basketTotal$: Observable<IBasketTotals>;
 
   constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
+    this.basketTotal$ = this.basketService.basketTotalSource$;
   }
 
   // tslint:disable-next-line: typedef
